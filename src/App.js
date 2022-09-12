@@ -1,5 +1,6 @@
+import {Component} from 'react'
+import BrowserList from './Components/BrowserList'
 import './App.css'
-import BrowserHistory from './Components/BrowserHistory'
 
 // These are the list used in the application. You can move them to any component needed.
 const initialHistoryList = [
@@ -78,6 +79,70 @@ const initialHistoryList = [
 ]
 
 // Replace your code here
-const App = () => <BrowserHistory initialHistoryList={initialHistoryList} />
+class App extends Component {
+  state = {searchInput: '', searchDetails: initialHistoryList}
 
+  onChangeSearchInput = event => {
+    this.setState({searchInput: event.target.value})
+  }
+
+  deleteHistory = id => {
+    const {searchDetails} = this.state
+    const filteredHistory = searchDetails.filter(each => each.id !== id)
+
+    this.setState({searchDetails: filteredHistory})
+  }
+
+  render() {
+    const {searchInput, searchDetails} = this.state
+
+    console.log(searchInput)
+    const searchHistory = searchDetails.filter(each =>
+      each.title.toLowerCase().includes(searchInput.toLowerCase()),
+    )
+
+    return (
+      <div className="background">
+        <div>
+          <nav className="headingContainer">
+            <div className="imgLogo">
+              <img
+                src="https://assets.ccbp.in/frontend/react-js/history-website-logo-img.png"
+                className="app logo"
+                alt="app logo"
+              />
+            </div>
+            <div className="historySearch">
+              <img
+                src="https://assets.ccbp.in/frontend/react-js/search-img.png"
+                className="searchIcon"
+                alt="search"
+                htmlFor="searchIIcon"
+              />
+              <input
+                type="search"
+                placeholder="Search History"
+                className="inputSearch"
+                id="searchIIcon"
+                onChange={this.onChangeSearchInput}
+                value={searchInput}
+              />
+            </div>
+          </nav>
+        </div>
+        <div className="container">
+          <ul>
+            {searchHistory.map(eachItem => (
+              <BrowserList
+                initialHistory={eachItem}
+                key={eachItem.id}
+                deleteHistory={this.deleteHistory}
+              />
+            ))}
+          </ul>
+        </div>
+      </div>
+    )
+  }
+}
 export default App
