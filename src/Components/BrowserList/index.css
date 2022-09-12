@@ -1,0 +1,47 @@
+.BrowsedItem {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 10px;
+}
+.logoBrowsed {
+  width: 35px;
+  height: 35px;
+  padding: 5px;
+  margin: 20px;
+}
+.para {
+  font-family: roboto;
+  justify-content: center;
+  padding: 25px;
+  margin: 10px;
+}
+.socialMedia {
+  font-family: roboto;
+  font-size: 20px;
+  color: #475569;
+  padding: 5px;
+  margin: 20px;
+}
+.domainUrl {
+  font-family: roboto;
+  font-size: 15px;
+  color: #64748b;
+  padding: 5px;
+  margin-top: 25px;
+  margin-left: -20px;
+}
+.deleteItem {
+  height: 25px;
+  width: 25px;
+  margin-top: 35px;
+}
+.btn {
+  background-color: #ffffff;
+  border: none;
+}
