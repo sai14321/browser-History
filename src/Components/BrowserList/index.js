@@ -1,31 +1,40 @@
 import './index.css'
 
 const BrowserList = props => {
-  const {list, updateList} = props
-  const {BrowsedHistory} = list
+  const {initialHistory, deleteHistory} = props
+  const {timeAccessed, logoUrl, title, domainUrl, id} = initialHistory
 
-  const onClickSuggestion = () => {
-    updateList(BrowsedHistory)
+  const onDelete = () => {
+    deleteHistory(id)
   }
 
   return (
     <li className="BrowsedItem">
-      <p className="para">{BrowsedHistory.timeAccessed}</p>
+      <p className="para">{timeAccessed}</p>
       <div className="row">
-        <img src={list.logoUrl} className="logoBrowsed" alt="logo" />
-        <h1 className="socialMedia" id="logo">
-          {list.title}
-        </h1>
+        <img src={logoUrl} className="logoBrowsed" alt="domain logo" />
+        <p className="socialMedia" id="logo">
+          {title}
+        </p>
         <p className="domainUrl" htmlFor="logo">
-          {list.domainUrl}
+          {domainUrl}
         </p>
       </div>
-      <img
-        src="https://assets.ccbp.in/frontend/react-js/delete-img.png"
-        className="deleteItem"
-        alt="delete"
-        onClick={onClickSuggestion}
-      />
+      <div className="row2">
+        <button
+          type="button"
+          className="btn"
+          testID="delete"
+          onClick={onDelete}
+        >
+          <img
+            src="https://assets.ccbp.in/frontend/react-js/delete-img.png"
+            className="deleteItem"
+            alt="delete"
+            id="delete"
+          />
+        </button>
+      </div>
     </li>
   )
 }
